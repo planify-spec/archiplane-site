@@ -1,234 +1,747 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-<meta charset="utf-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Floor Plans (2D & 3D) | Archiplane</title>
+  <meta name="description" content="Premium 2D & 3D floor plans for real estate listings. EU-ready exports, clean handover, predictable delivery." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.archiplane.com/floor-plans/" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Floor Plans (2D & 3D) | Archiplane" />
+  <meta property="og:description" content="Standardized, marketing-ready floor plans for real estate teams that need speed, clarity, and premium client delivery." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.archiplane.com/floor-plans/" />
+  <meta property="og:site_name" content="Archiplane" />
 
-<title>Archiplane — EU Client Ready</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#0b1220;
+      --muted:#5f6b7a;
+      --line:#e8edf3;
+      --soft:#f6f8fb;
+      --soft2:#f1f5f9;
+      --card:#ffffff;
+      --dark:#0b1220;
+      --dark2:#111827;
+      --shadow:0 14px 44px rgba(10,18,32,.06);
+      --radius:24px;
+      --radius-sm:18px;
+      --max:1160px;
+    }
 
-<meta name="description" content="Archiplane builds premium design systems, landing pages and brand experiences for architecture, real estate and high-trust companies.">
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
 
-<meta name="google-site-verification" content="drirncJmWjxjuFB-aMI26qa6q0UO22JylO_e7-0kpR4">
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,.82);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:16px;padding:14px 0;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.2px;
+    }
+    .brand-dot{
+      width:10px;height:10px;border-radius:999px;background:var(--ink);
+      box-shadow:0 0 0 6px rgba(11,18,32,.06);
+    }
+    .menu{
+      display:flex;align-items:center;gap:18px;font-size:14px;color:var(--muted);
+    }
+    .menu a:hover{color:var(--ink)}
+    .cta-inline{display:flex;gap:10px;align-items:center}
 
-<link rel="canonical" href="https://www.archiplane.com/">
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:44px;padding:0 16px;border-radius:999px;
+      border:1px solid var(--line);background:#fff;color:var(--ink);
+      font-size:14px;font-weight:700;white-space:nowrap;
+      transition:.18s ease;
+    }
+    .btn:hover{transform:translateY(-1px);border-color:#d5dde7}
+    .btn.primary{background:var(--dark);color:#fff;border-color:var(--dark)}
+    .btn.primary:hover{opacity:.95}
+    .btn.light{background:#fff;color:var(--ink);border-color:#fff}
+    .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.22)}
 
-<meta name="robots" content="index, follow">
+    .hero{padding:52px 0 26px}
+    .hero-grid{
+      display:grid;grid-template-columns:1.06fr .94fr;gap:20px;align-items:stretch;
+    }
+    .kicker{
+      font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+    }
+    h1{
+      margin:12px 0 0;font-size:50px;line-height:1.04;letter-spacing:-1.25px;
+      max-width:11ch;
+    }
+    .lead{
+      margin:16px 0 0;max-width:60ch;
+      font-size:18px;line-height:1.68;color:var(--muted);
+    }
+    .hero-actions{
+      margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:9px 13px;border-radius:999px;border:1px solid var(--line);
+      background:#fff;font-size:13px;color:var(--muted);font-weight:600;
+    }
 
-<meta property="og:title" content="Archiplane — EU Client Ready">
-<meta property="og:description" content="Premium design & web systems for architecture, real estate and high-trust brands.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.archiplane.com/">
+    .trust{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px;
+    }
+    .trust-card{
+      background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px 14px 13px;
+    }
+    .trust-card b{display:block;font-size:14px;letter-spacing:-.2px}
+    .trust-card span{display:block;margin-top:6px;font-size:13px;line-height:1.45;color:var(--muted)}
 
-<link rel="icon" href="/assets/favicon.svg">
+    .panel{
+      background:linear-gradient(180deg,var(--soft),#fff);
+      border:1px solid var(--line);border-radius:28px;padding:18px;
+      box-shadow:var(--shadow);
+    }
+    .mock{
+      min-height:312px;
+      border:1px solid var(--line);border-radius:20px;background:#fff;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;padding:22px;color:#8ea0b2;
+    }
+    .mock b{color:#5b6a79}
+    .mini-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px;
+    }
+    .mini{
+      border:1px solid var(--line);border-radius:16px;background:#fff;padding:12px;
+    }
+    .mini b{display:block;font-size:13px}
+    .mini span{display:block;margin-top:4px;font-size:12px;color:var(--muted)}
 
-<link rel="stylesheet" href="styles.css">
+    section{padding:38px 0;border-top:1px solid var(--line)}
+    h2{
+      margin:0;font-size:28px;letter-spacing:-.45px;line-height:1.12;
+    }
+    .sub{
+      margin:10px 0 0;max-width:78ch;color:var(--muted);line-height:1.68;font-size:16px;
+    }
 
-<style>
+    .grid-3{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;
+    }
+    .card{
+      border:1px solid var(--line);border-radius:22px;background:var(--card);padding:18px;
+    }
+    .card h3{
+      margin:0;font-size:16px;letter-spacing:-.15px;
+    }
+    .card p{
+      margin:8px 0 0;font-size:14px;line-height:1.62;color:var(--muted);
+    }
 
-body{
-font-family:system-ui;
-margin:0;
-background:#0f1115;
-color:white;
-line-height:1.6;
-}
+    .split{
+      display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;
+    }
+    .bigcard{
+      border:1px solid var(--line);border-radius:26px;
+      background:linear-gradient(180deg,#fff,var(--soft));
+      padding:20px;
+    }
+    .bigcard h3{
+      margin:0;font-size:22px;letter-spacing:-.35px;
+    }
+    .bigcard p{
+      margin:10px 0 0;color:var(--muted);line-height:1.65;font-size:15px;
+    }
+    .list{
+      margin:14px 0 0;padding-left:18px;color:var(--muted);
+      line-height:1.8;font-size:14px;
+    }
+    .list li + li{margin-top:2px}
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:40px 20px;
-}
+    .steps{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px;
+    }
+    .step{
+      border:1px solid var(--line);border-radius:20px;background:#fff;padding:16px;
+    }
+    .num{
+      font-size:12px;font-weight:900;letter-spacing:.18em;color:var(--muted);
+    }
+    .step b{display:block;margin-top:6px;font-size:15px}
+    .step span{display:block;margin-top:6px;font-size:13px;line-height:1.5;color:var(--muted)}
 
-header{
-border-bottom:1px solid #222;
-}
+    .workflow{
+      display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;
+    }
 
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
+    .packages{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;
+    }
+    .pkg{
+      border:1px solid var(--line);border-radius:24px;background:#fff;padding:20px;
+    }
+    .pkg h3{margin:0;font-size:18px;letter-spacing:-.25px}
+    .pkg .tag{
+      display:inline-block;margin-top:10px;padding:7px 11px;border-radius:999px;
+      background:var(--soft);border:1px solid var(--line);font-size:12px;font-weight:700;color:var(--muted);
+    }
+    .pkg p{margin:12px 0 0;color:var(--muted);font-size:14px;line-height:1.6}
 
-.logo{
-font-weight:700;
-font-size:20px;
-}
+    .services-grid{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px;
+    }
 
-.hero{
-padding:100px 0;
-text-align:center;
-}
+    .faq{
+      display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;
+    }
+    details{
+      border:1px solid var(--line);border-radius:20px;background:#fff;padding:16px 16px;
+    }
+    summary{
+      cursor:pointer;font-weight:700;list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{
+      margin:10px 0 0;color:var(--muted);font-size:14px;line-height:1.65;
+    }
 
-.hero h1{
-font-size:48px;
-margin-bottom:20px;
-}
+    .cta-block{
+      display:grid;grid-template-columns:1.15fr .85fr;gap:16px;
+      background:linear-gradient(180deg,var(--dark),var(--dark2));
+      color:#fff;border-radius:30px;padding:24px;border:1px solid rgba(255,255,255,.08);
+    }
+    .cta-block .muted{
+      color:rgba(255,255,255,.78);line-height:1.72;
+    }
 
-.hero p{
-opacity:.8;
-max-width:700px;
-margin:auto;
-}
+    .form{
+      border:1px solid rgba(255,255,255,.13);
+      background:rgba(255,255,255,.05);
+      border-radius:24px;padding:16px;
+    }
+    label{
+      display:block;margin-top:10px;
+      font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+      color:rgba(255,255,255,.72);
+    }
+    input, textarea{
+      width:100%;margin-top:6px;padding:12px 13px;
+      border-radius:15px;border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.08);color:#fff;outline:none;
+      font:inherit;
+    }
+    textarea{min-height:118px;resize:vertical}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .note{
+      margin-top:10px;font-size:13px;line-height:1.55;color:rgba(255,255,255,.72);
+    }
 
-.btn{
-display:inline-block;
-margin-top:30px;
-padding:14px 26px;
-background:white;
-color:black;
-text-decoration:none;
-font-weight:600;
-border-radius:6px;
-}
+    footer{
+      padding:28px 0;color:var(--muted);font-size:13px;
+    }
+    .foot{
+      display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+      border-top:1px solid var(--line);padding-top:16px;
+    }
 
-section{
-padding:80px 0;
-border-top:1px solid #222;
-}
+    .tiny{font-size:12px;color:var(--muted);line-height:1.55}
+    .hide-mobile{display:block}
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:30px;
-}
+    @media (max-width: 980px){
+      .hero-grid,.split,.workflow,.cta-block{grid-template-columns:1fr}
+      .grid-3,.packages,.faq,.services-grid{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr 1fr}
+      .trust{grid-template-columns:1fr}
+      h1{font-size:42px;max-width:none}
+      .menu{display:none}
+    }
 
-.card{
-background:#15181f;
-padding:30px;
-border-radius:8px;
-}
-
-footer{
-text-align:center;
-padding:40px 20px;
-border-top:1px solid #222;
-opacity:.7;
-}
-
-</style>
-
+    @media (max-width: 560px){
+      .wrap{padding:0 16px}
+      .hero{padding-top:36px}
+      h1{font-size:35px;letter-spacing:-.8px}
+      .lead{font-size:16px}
+      .mini-grid,.row,.steps{grid-template-columns:1fr}
+      .cta-inline{display:none}
+      .hide-mobile{display:none}
+    }
+  </style>
 </head>
 
 <body>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="/">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span>Archiplane</span>
+        </a>
 
-<header>
-<div class="container">
-<nav>
+        <nav class="menu" aria-label="Primary navigation">
+          <a href="/#services">Services</a>
+          <a href="/#work">Work</a>
+          <a href="/#process">Process</a>
+          <a href="/#faq">FAQ</a>
+          <a href="/floor-plans/" aria-current="page">Floor Plans</a>
+          <a href="/#contact">Book a Call</a>
+        </nav>
 
-<div class="logo">Archiplane</div>
+        <div class="cta-inline">
+          <a class="btn" href="/#work">See Proof</a>
+          <a class="btn primary" href="#contact">Start a Project</a>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<div>
-<a href="#services">Services</a>
-<a href="#process">Process</a>
-<a href="#contact">Contact</a>
-</div>
+  <main>
+    <!-- HERO -->
+    <section class="hero" style="border-top:none">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <div class="kicker">Real Estate Floor Plans</div>
+            <h1>2D &amp; 3D floor plans that make listings convert.</h1>
+            <p class="lead">
+              Standardized, marketing-ready floor plans for real estate teams that need speed,
+              clarity, and premium client delivery.
+            </p>
 
-</nav>
-</div>
-</header>
+            <div class="hero-actions">
+              <a class="btn primary" href="#contact">Request a Quote</a>
+              <a class="btn" href="#samples">See Samples</a>
+              <span class="pill hide-mobile">Fast. Clear. Predictable.</span>
+            </div>
 
-<section class="hero">
+            <div class="trust">
+              <div class="trust-card">
+                <b>24–72h first deliverable</b>
+                <span>Quick starts with structured revisions and clear scope.</span>
+              </div>
+              <div class="trust-card">
+                <b>EU-ready handover</b>
+                <span>Client-grade exports, folders, and naming that feel professional.</span>
+              </div>
+              <div class="trust-card">
+                <b>High-trust finish</b>
+                <span>Premium visual system built to impress decision-makers fast.</span>
+              </div>
+            </div>
 
-<div class="container">
+            <div class="tiny" style="margin-top:12px;">
+              Email-first communication keeps things executive and clean.
+            </div>
+          </div>
 
-<h1>Build a Brand That Looks Expensive</h1>
+          <div class="panel" id="samples">
+            <div class="mock">
+              <b>Replace this with your own floor plan preview</b>
+              <div style="margin-top:8px;font-size:14px;line-height:1.55;">
+                Best option: one strong 2D image or a split 2D/3D comparison screenshot
+              </div>
+            </div>
 
-<p>
-Archiplane designs high-trust brand systems, landing pages and web experiences
-for architecture studios, real estate companies and global clients.
-</p>
+            <div class="mini-grid">
+              <div class="mini">
+                <b>2D Plans</b>
+                <span>Monochrome / Color-coded / Full-color</span>
+              </div>
+              <div class="mini">
+                <b>3D Plans</b>
+                <span>Top / Dollhouse / Perspective views</span>
+              </div>
+              <div class="mini">
+                <b>Reports</b>
+                <span>Optional room size / area summaries</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<a class="btn" href="#contact">Start a Project</a>
+    <!-- FEATURE GRID -->
+    <section>
+      <div class="wrap">
+        <h2>Streamlined floor plan workflows</h2>
+        <p class="sub">
+          Standardized production keeps turnaround fast, quality consistent, and delivery clean
+          across every listing.
+        </p>
 
-</div>
+        <div class="grid-3">
+          <div class="card">
+            <h3>Flexible input formats</h3>
+            <p>Send sketches, PDFs, scans, photos, or CAD exports. We work with what you have.</p>
+          </div>
+          <div class="card">
+            <h3>Optional measurement reports</h3>
+            <p>Add room-size or area summaries as a clean support document when needed.</p>
+          </div>
+          <div class="card">
+            <h3>Fast turnaround options</h3>
+            <p>Standard delivery with rush handling available for urgent property listings.</p>
+          </div>
+          <div class="card">
+            <h3>Standardized styles</h3>
+            <p>Consistent output helps agencies present every listing with the same high-trust look.</p>
+          </div>
+          <div class="card">
+            <h3>Furniture + garden add-ons</h3>
+            <p>Improve readability and context with optional furniture layouts and outdoor outlines.</p>
+          </div>
+          <div class="card">
+            <h3>EU-ready export formats</h3>
+            <p>PNG, JPG, and PDF with clean naming. Source files available on request.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</section>
+    <!-- STANDARDIZATION -->
+    <section>
+      <div class="wrap">
+        <h2>Why standardization matters</h2>
+        <p class="sub">
+          Save time, reduce revision chaos, and deliver consistent floor plans across every property.
+          A clear system makes agencies faster and more professional.
+        </p>
 
-<section id="services">
+        <div class="split">
+          <div class="bigcard">
+            <h3>2D Floor Plans — clarity first</h3>
+            <p>
+              Best for clean listing presentation, fast buyer understanding, and broad real estate use.
+            </p>
+            <ul class="list">
+              <li>Monochrome, color-coded, or full-color styles</li>
+              <li>Room labels and optional dimensions</li>
+              <li>Furniture add-on available</li>
+              <li>Great for portals, brochures, and listing packs</li>
+            </ul>
+            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+              <a class="btn primary" href="#contact">Request 2D Quote</a>
+              <a class="btn" href="#packages">See Packages</a>
+            </div>
+          </div>
 
-<div class="container">
+          <div class="bigcard">
+            <h3>3D Floor Plans — premium presentation</h3>
+            <p>
+              Ideal when you want extra visual impact and a more high-end marketing feel.
+            </p>
+            <ul class="list">
+              <li>Top, dollhouse, and perspective view options</li>
+              <li>Furniture layout for stronger visualization</li>
+              <li>Useful for premium or developer-focused listings</li>
+              <li>Built for polished, client-facing presentation</li>
+            </ul>
+            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+              <a class="btn primary" href="#contact">Request 3D Quote</a>
+              <a class="btn" href="#process-flow">See Process</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<h2>Services</h2>
+    <!-- PROCESS -->
+    <section id="process-flow">
+      <div class="wrap">
+        <h2>Process</h2>
+        <p class="sub">Simple. Professional. Predictable.</p>
 
-<div class="grid">
+        <div class="steps">
+          <div class="step">
+            <div class="num">01</div>
+            <b>Send input</b>
+            <span>Share your sketch, PDF, image, or reference notes with deadline and scope.</span>
+          </div>
+          <div class="step">
+            <div class="num">02</div>
+            <b>Draft + QC</b>
+            <span>We standardize the style, build the draft, and review for clean output.</span>
+          </div>
+          <div class="step">
+            <div class="num">03</div>
+            <b>Revisions</b>
+            <span>Feedback is handled with strict versioning to keep the process organized.</span>
+          </div>
+          <div class="step">
+            <div class="num">04</div>
+            <b>Final + handover</b>
+            <span>Receive export pack, structured naming, and optional source delivery.</span>
+          </div>
+        </div>
 
-<div class="card">
-<h3>Brand Identity</h3>
-<p>Minimal and premium brand systems designed for high-trust industries.</p>
-</div>
+        <div class="workflow">
+          <div class="card">
+            <h3>Reliable delivery for recurring volume</h3>
+            <p>
+              Best suited for agencies and teams that need a dependable system across multiple listings.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Clean workflow management</h3>
+            <p>
+              Structured revisions, versioned exports, and professional handover keep projects easy to manage.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="card">
-<h3>Landing Pages</h3>
-<p>Fast, SEO-ready landing pages optimized for conversions.</p>
-</div>
+    <!-- PACKAGES -->
+    <section id="packages">
+      <div class="wrap">
+        <h2>Packages</h2>
+        <p class="sub">
+          Keep the page flexible with feature-based packages. Final pricing can be quoted per complexity and turnaround.
+        </p>
 
-<div class="card">
-<h3>Architecture Visuals</h3>
-<p>High-end visual presentations for architecture and real estate.</p>
-</div>
+        <div class="packages">
+          <div class="pkg">
+            <h3>Basic — 2D Clean</h3>
+            <span class="tag">Fast listing format</span>
+            <p>Clean 2D layout with labels and export pack for standard real estate use.</p>
+            <ul class="list">
+              <li>Standard 2D style</li>
+              <li>Room labels</li>
+              <li>PNG + PDF export</li>
+              <li>Simple, fast, practical</li>
+            </ul>
+          </div>
 
-</div>
+          <div class="pkg">
+            <h3>Pro — 2D Colored</h3>
+            <span class="tag">Most balanced</span>
+            <p>Higher-impact 2D output with color-coded zones and optional furniture layout.</p>
+            <ul class="list">
+              <li>Color-coded or full-color version</li>
+              <li>Furniture add-on available</li>
+              <li>High-resolution export</li>
+              <li>Great for stronger presentation</li>
+            </ul>
+          </div>
 
-</div>
+          <div class="pkg">
+            <h3>Premium — 3D Plan</h3>
+            <span class="tag">High-end marketing</span>
+            <p>3D floor plan visuals built for premium listings and stronger perceived value.</p>
+            <ul class="list">
+              <li>Multiple 3D view styles</li>
+              <li>Furniture layout supported</li>
+              <li>Client-facing premium visuals</li>
+              <li>Best for standout listings</li>
+            </ul>
+          </div>
+        </div>
 
-</section>
+        <div class="tiny" style="margin-top:14px;">
+          Recommended payment flow: 30–50% advance + milestone delivery.
+        </div>
+      </div>
+    </section>
 
-<section id="process">
+    <!-- RELATED SERVICES -->
+    <section>
+      <div class="wrap">
+        <h2>Offer more than floor plans</h2>
+        <p class="sub">
+          A stronger real estate presentation often combines floor plans with other visual content and delivery assets.
+        </p>
 
-<div class="container">
+        <div class="services-grid">
+          <div class="card">
+            <h3>Image editing</h3>
+            <p>Listing-ready image cleanup, corrections, and premium visual polish.</p>
+          </div>
+          <div class="card">
+            <h3>3D visualization</h3>
+            <p>Premium renders or presentation visuals for stronger property storytelling.</p>
+          </div>
+          <div class="card">
+            <h3>Landing pages</h3>
+            <p>Fast, clean service pages that turn proof and positioning into inquiries.</p>
+          </div>
+          <div class="card">
+            <h3>Client delivery systems</h3>
+            <p>Folders, naming, exports, and professional handover structure for EU clients.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<h2>Process</h2>
+    <!-- FAQ -->
+    <section>
+      <div class="wrap">
+        <h2>FAQ</h2>
+        <p class="sub">Short answers — no confusion.</p>
 
-<div class="grid">
+        <div class="faq">
+          <details>
+            <summary>What files do you need to start?</summary>
+            <p>A sketch, photo, PDF, scan, or CAD export is enough. Add notes for style, deadline, and any special requirements.</p>
+          </details>
 
-<div class="card">
-<h3>1. Strategy</h3>
-<p>Define brand positioning and conversion goals.</p>
-</div>
+          <details>
+            <summary>Do you support urgent delivery?</summary>
+            <p>Yes. Share the deadline first, and we’ll confirm whether rush delivery fits the project scope.</p>
+          </details>
 
-<div class="card">
-<h3>2. Design</h3>
-<p>Create premium layouts and visual systems.</p>
-</div>
+          <details>
+            <summary>Can you match a consistent style across all listings?</summary>
+            <p>Yes. Standardization is one of the main advantages — especially for agencies or recurring clients.</p>
+          </details>
 
-<div class="card">
-<h3>3. Delivery</h3>
-<p>Clean files, source exports and professional handover.</p>
-</div>
+          <details>
+            <summary>Do you provide source files?</summary>
+            <p>Standard delivery is client-ready export. Source files can be included when requested in advance.</p>
+          </details>
 
-</div>
+          <details>
+            <summary>Can you include furniture and garden options?</summary>
+            <p>Yes. These can be added when needed to improve readability and overall presentation.</p>
+          </details>
 
-</div>
+          <details>
+            <summary>How do revisions work?</summary>
+            <p>We keep revisions organized with clear versioning, so feedback stays easy to track and final delivery stays clean.</p>
+          </details>
+        </div>
+      </div>
+    </section>
 
-</section>
+    <!-- CTA -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="cta-block">
+          <div>
+            <div class="kicker" style="color:rgba(255,255,255,.72)">Ready to look expensive?</div>
+            <h2 style="margin-top:10px;color:#fff;">Request your floor plan</h2>
+            <p class="muted" style="margin-top:12px;">
+              Send a sketch, PDF, or property photo with your preferred style and timeline.
+              We’ll reply with a clean, professional plan.
+            </p>
 
-<section id="contact">
+            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+              <a class="btn light" href="mailto:planify@archiplane.com">Email: planify@archiplane.com</a>
+              <button class="btn ghost" id="copyEmailBtn" type="button">Copy email</button>
+            </div>
 
-<div class="container">
+            <div class="note">
+              No backend needed. The form opens your email app with a ready message.
+            </div>
+          </div>
 
-<h2>Contact</h2>
+          <div class="form">
+            <form id="mailForm">
+              <div class="row">
+                <div>
+                  <label for="name">Name</label>
+                  <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" />
+                </div>
+              </div>
 
-<p>
-Ready to start a project?
-</p>
+              <label for="details">Project details</label>
+              <textarea id="details" name="details" placeholder="Example: 2D color plan for a 2-bedroom apartment. Input: PDF. Deadline: 48h. Include furniture layout."></textarea>
 
-<a class="btn" href="mailto:planify@archiplane.com">
-Email: planify@archiplane.com
-</a>
+              <div class="form-actions">
+                <button class="btn light" type="submit">Open email draft</button>
+                <a class="btn ghost" href="/">Back to Home</a>
+              </div>
 
-</div>
+              <div class="note" id="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
 
-</section>
+        <footer>
+          <div class="foot">
+            <div>© <span id="year"></span> Archiplane</div>
+            <div><a href="mailto:planify@archiplane.com">planify@archiplane.com</a></div>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
 
-<footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-Archiplane © 2026  
-Premium design & delivery for high-trust brands.
+    const emailAddr = "planify@archiplane.com";
+    const copyBtn = document.getElementById("copyEmailBtn");
+    const status = document.getElementById("status");
 
-</footer>
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(emailAddr);
+        copyBtn.textContent = "Copied ✓";
+        status.textContent = "Email copied.";
+        setTimeout(() => {
+          copyBtn.textContent = "Copy email";
+          status.textContent = "";
+        }, 1600);
+      } catch (e) {
+        status.textContent = "Copy failed. Use: " + emailAddr;
+      }
+    });
 
+    const form = document.getElementById("mailForm");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = (document.getElementById("name").value || "").trim();
+      const email = (document.getElementById("email").value || "").trim();
+      const details = (document.getElementById("details").value || "").trim();
+
+      const subject = "Floor Plan Request (2D/3D) — Archiplane";
+      const body = [
+        "Hello Archiplane,",
+        "",
+        "I would like a quote for a floor plan project.",
+        "",
+        "Name: " + (name || "—"),
+        "Email: " + (email || "—"),
+        "",
+        "Project details:",
+        (details || "—"),
+        "",
+        "Thank you."
+      ].join("\\n");
+
+      const mailto = "mailto:" + encodeURIComponent(emailAddr)
+        + "?subject=" + encodeURIComponent(subject)
+        + "&body=" + encodeURIComponent(body);
+
+      status.textContent = "Opening your email draft…";
+      window.location.href = mailto;
+
+      setTimeout(() => { status.textContent = ""; }, 2200);
+    });
+  </script>
 </body>
-
 </html>
