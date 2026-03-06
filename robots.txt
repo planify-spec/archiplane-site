@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 User-agent: *
 Allow: /
 
 Sitemap: https://www.archiplane.com/sitemap.xml
+=======
+User-agent: *
+Allow: /
+
+
+Sitemap: https://www.archiplane.com/sitemap.xml
+>>>>>>> dcfad6035c10b2fc9424453ba93ff4d7743641fa
