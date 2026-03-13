@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Start Your Project | Archiplane</title>
+  <meta name="description" content="Upload floor plans, Floorplanner exports, CAD drawings, Revit models, 3ds Max files, and point cloud scan packages to Archiplane." />
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .topbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .nav-links a.active {
+      color: #111827;
+      font-weight: 700;
+    }
+
+    .hero {
+      padding: 72px 20px 28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,248,250,0.98));
+    }
+
+    .hero-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: #0f766e;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: 46px;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      max-width: 780px;
+      margin: 0;
+      font-size: 17px;
+      color: #4b5563;
+    }
+
+    .main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
+    }
+
+    .card h2 {
+      margin: 0 0 18px;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .small-muted {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .support-block {
+      padding: 14px 0;
+      border-bottom: 1px solid #edf0f3;
+    }
+
+    .support-block:last-child {
+      border-bottom: none;
+    }
+
+    .support-block h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .support-block p {
+      margin: 0;
+      color: #4b5563;
+      font-size: 15px;
+    }
+
+    .highlight-box {
+      margin-top: 20px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+    }
+
+    .highlight-box h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .highlight-box ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #4b5563;
+      font-size: 15px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 14px 15px;
+      border: 1px solid #d1d5db;
+      border-radius: 14px;
+      background: #ffffff;
+      font-size: 15px;
+      color: #111827;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: #0f766e;
+      box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
+    }
+
+    .drop-zone {
+      position: relative;
+      min-height: 190px;
+      border: 2px dashed #94a3b8;
+      border-radius: 18px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 22px;
+      transition: 0.2s ease;
+      overflow: hidden;
+    }
+
+    .drop-zone.dragover {
+      border-color: #0f766e;
+      background: #ecfeff;
+    }
+
+    .drop-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .drop-content {
+      pointer-events: none;
+    }
+
+    .drop-icon {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .drop-content p {
+      margin: 0 0 6px;
+      font-size: 16px;
+      color: #111827;
+    }
+
+    .drop-content span {
+      color: #0f766e;
+      text-decoration: underline;
+    }
+
+    .drop-content small {
+      color: #6b7280;
+      display: block;
+      line-height: 1.7;
+    }
+
+    .file-list {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 0;
+    }
+
+    .file-list li {
+      margin-bottom: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      font-size: 14px;
+      color: #374151;
+      word-break: break-word;
+    }
+
+    .consent {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin: 14px 0 20px;
+    }
+
+    .consent input {
+      margin-top: 4px;
+    }
+
+    .consent label {
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px 18px;
+      border: none;
+      border-radius: 14px;
+      background: #111827;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background: #0b1220;
+      transform: translateY(-1px);
+    }
+
+    .bottom-note {
+      margin-top: 14px;
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    .footer {
+      padding: 24px 20px 40px;
+      text-align: center;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      h1 { font-size: 36px; }
+      .grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav { gap: 14px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="nav">
+      <div class="brand">Archiplane</div>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/services/">Services</a>
+        <a href="/portfolio/">Portfolio</a>
+        <a href="/floor-plans/">Floor Plans</a>
+        <a href="/contact/">Contact</a>
+        <a href="/start-your-project.html" class="active">Start Your Project</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-wrap">
+      <span class="eyebrow">Project Submission</span>
+      <h1>Upload Your Project Files</h1>
+      <p>
+        Send your floor plans, Floorplanner exports, CAD drawings, Revit models,
+        3ds Max files, and point cloud or laser scan packages in one place.
+        Our team will review your project and reply within 24 hours.
+      </p>
+    </div>
+  </section>
+
+  <main class="main">
+    <div class="grid">
+
+      <div class="card">
+        <h2>Supported Files</h2>
+
+        <div class="support-block">
+          <h3>Plans & Images</h3>
+          <p>PDF, JPG, PNG</p>
+        </div>
+
+        <div class="support-block">
+          <h3>Floorplanner Exports</h3>
+          <p>JPG, PNG, PDF, ZIP</p>
+        </div>
+
+        <div class="support-block">
+          <h3>CAD & BIM</h3>
+          <p>DWG, DXF, RVT, RFA, IFC</p>
+        </div>
+
+        <div class="support-block">
+          <h3>3D Models</h3>
+          <p>MAX, FBX, OBJ, 3DS</p>
+        </div>
+
+        <div class="support-block">
+          <h3>Point Cloud / Laser Scan</h3>
+          <p>E57, RCP, LAS, PTG, ZIP</p>
+        </div>
+
+        <div class="highlight-box">
+          <h3>Upload Guidelines</h3>
+          <ul>
+            <li>Multiple files allowed</li>
+            <li>Best practice: up to 20 files per submission</li>
+            <li>For large model or scan packages, send a ZIP file</li>
+            <li>Add reference images or notes if available</li>
+            <li>Use clear file names for faster review</li>
+          </ul>
+        </div>
+
+        <div class="highlight-box">
+          <h3>Good to know</h3>
+          <div class="small-muted">
+            Using Floorplanner, Revit, 3ds Max, or Leica BLK scan data? You can upload
+            exports, project packages, or ZIP folders directly through this form.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Start Your Project</h2>
+
+        <form id="projectUploadForm" action="YOUR_FORM_ENDPOINT" method="POST" enctype="multipart/form-data">
+          <div class="form-row">
+            <div class="field">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" name="full_name" placeholder="Your full name" required />
+            </div>
+
+            <div class="field">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="phone">WhatsApp / Phone</label>
+              <input type="text" id="phone" name="phone" placeholder="+8801XXXXXXXXX" />
+            </div>
+
+            <div class="field">
+              <label for="country">Country</label>
+              <input type="text" id="country" name="country" placeholder="Bangladesh / USA / UK" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="projectType">Project Type</label>
+              <select id="projectType" name="project_type" required>
+                <option value="">Select project type</option>
+                <option>2D Floor Plan</option>
+                <option>3D Floor Plan</option>
+                <option>Interior Layout</option>
+                <option>Exterior Visualization</option>
+                <option>Real Estate Visualization</option>
+                <option>BIM / Revit Project</option>
+                <option>Floorplanner Conversion</option>
+                <option>Point Cloud / Scan to Model</option>
+                <option>Commercial Project</option>
+                <option>Residential Project</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="floorArea">Floor Area / Dimensions</label>
+              <input type="text" id="floorArea" name="floor_area" placeholder="e.g. 2400 sq ft / 40' x 60'" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="message">Project Description</label>
+            <textarea id="message" name="message" rows="6" placeholder="Tell us about your project, room count, style, target output, deadline, and any special requirements."></textarea>
+          </div>
+
+          <div class="field">
+            <label for="projectFiles">Upload Plans, Models & Floorplanner Files</label>
+
+            <div id="dropZone" class="drop-zone">
+              <input
+                type="file"
+                id="projectFiles"
+                name="project_files[]"
+                multiple
+                accept=".pdf,.jpg,.jpeg,.png,.dwg,.dxf,.rvt,.rfa,.ifc,.max,.fbx,.obj,.3ds,.e57,.rcp,.las,.ptg,.zip"
+              />
+              <div class="drop-content">
+                <div class="drop-icon">📁</div>
+                <p><strong>Drag & drop files here</strong> or <span>browse your device</span></p>
+                <small>
+                  Supported: PDF, JPG, PNG, DWG, DXF, RVT, RFA, IFC, MAX, FBX, OBJ, 3DS, E57, RCP, LAS, PTG, ZIP
+                </small>
+              </div>
+            </div>
+
+            <ul id="fileList" class="file-list"></ul>
+          </div>
+
+          <div class="consent">
+            <input type="checkbox" id="consent" required />
+            <label for="consent">
+              I allow Archiplane to review my project files and contact me regarding this project submission.
+            </label>
+          </div>
+
+          <button type="submit" class="submit-btn">Submit Project Files</button>
+
+          <div class="bottom-note">
+            Replace <strong>YOUR_FORM_ENDPOINT</strong> with your Jotform, Formspree, Getform, or custom backend URL.
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="footer">
+    © Archiplane — Professional Floor Plans, 3D Visualization & Architectural Support
+  </div>
+
+  <script>
+    (function () {
+      const fileInput = document.getElementById("projectFiles");
+      const fileList = document.getElementById("fileList");
+      const dropZone = document.getElementById("dropZone");
+
+      function formatFileSize(bytes) {
+        if (bytes < 1024) return bytes + " B";
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+        if (bytes < 1024 * 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(1) + " MB";
+        return (bytes / (1024 * 1024 * 1024)).toFixed(1) + " GB";
+      }
+
+      function renderFiles(files) {
+        fileList.innerHTML = "";
+        if (!files.length) return;
+
+        Array.from(files).forEach((file) => {
+          const li = document.createElement("li");
+          li.textContent = file.name + " (" + formatFileSize(file.size) + ")";
+          fileList.appendChild(li);
+        });
+      }
+
+      fileInput.addEventListener("change", function () {
+        renderFiles(this.files);
+      });
+
+      ["dragenter", "dragover"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          dropZone.classList.add("dragover");
+        });
+      });
+
+      ["dragleave", "drop"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          dropZone.classList.remove("dragover");
+        });
+      });
+
+      dropZone.addEventListener("drop", function (e) {
+        const files = e.dataTransfer.files;
+        fileInput.files = files;
+        renderFiles(files);
+      });
+    })();
+  </script>
+
+</body>
+</html>https://www.dropbox.com/request/T0srACtLOqi2OZcAbfT6
